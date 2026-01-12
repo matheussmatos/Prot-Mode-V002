@@ -9,6 +9,62 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* Botão de login no menu */
+        .login-button {
+            width: 32px;
+            height: 32px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .login-button:hover {
+            border-color: #fff;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .login-button {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
+
+            .nav-right {
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -29,12 +85,17 @@
 
     <!-- Navigation -->
     <nav>
-        <div class="logo">MODE</div>
-        <div class="nav-links">
-            <a href="#home">Início</a>
-            <a href="#about">Sobre</a>
-            <a href="#gallery">Galeria</a>
-            <a href="#contact">Contato</a>
+        <div class="nav-container">
+            <div class="logo">MODE</div>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#home">Início</a>
+                    <a href="#about">Sobre</a>
+                    <a href="#gallery">Galeria</a>
+                    <a href="#contact">Contato</a>
+                </div>
+                <a href="login.html" class="login-button" title="Área Restrita">?</a>
+            </div>
         </div>
     </nav>
 
@@ -146,7 +207,7 @@
             <span class="modal-close">&times;</span>
             <div class="modal-icon">✓</div>
             <h2>Mensagem Enviada</h2>
-            <p>Obrigado por entrar em contato com a Mode. Responderemos em breve!</p>
+            <p>Obrigado por entrar em contato com a Mode. Um dia a gente responde...</p>
         </div>
     </div>
 

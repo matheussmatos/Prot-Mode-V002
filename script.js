@@ -224,3 +224,36 @@ if (isMobileDevice) {
 
 console.log('%c MODE SKETCH ', 'background: #000; color: #fff; font-size: 20px; padding: 10px;');
 console.log('%c Todos os modos de arte ', 'background: #500000; color: #fff; font-size: 14px; padding: 5px;');
+
+// LIGHTBOX GALERIA
+document.querySelectorAll('.gallery-item img').forEach(img => {
+    img.addEventListener('click', function() { // Corrigido: removido o ")" extra
+        const lightbox = document.createElement('div');
+        
+        // Estilização básica para o lightbox aparecer
+        lightbox.style.cssText = `
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            cursor: pointer;
+        `;
+
+        const fullImg = document.createElement('img');
+        fullImg.src = this.src; // Pega a imagem que foi clicada
+        fullImg.style.maxWidth = '90%';
+        fullImg.style.maxHeight = '90%';
+
+        lightbox.appendChild(fullImg);
+        document.body.appendChild(lightbox);
+
+        // Remove o lightbox ao clicar nele
+        lightbox.onclick = () => lightbox.remove();
+    });
+});

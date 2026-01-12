@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área Restrita | Mode</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        .protected-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .protected-logo {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 80px;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .protected-title {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .protected-subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .protected-user-info {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px 40px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .user-detail {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 2px;
+            margin: 10px 0;
+        }
+
+        .user-detail strong {
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .protected-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .protected-button {
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .protected-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .protected-button:hover::before {
+            left: 0;
+        }
+
+        .protected-button:hover {
+            color: #000;
+        }
+
+        .protected-button.danger {
+            border-color: #ff4444;
+            color: #ff4444;
+        }
+
+        .protected-button.danger::before {
+            background: #ff4444;
+        }
+
+        .protected-button.danger:hover {
+            color: #fff;
+        }
+
+        .protected-content {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            max-width: 800px;
+            margin: 40px auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .protected-content h3 {
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .protected-content p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .protected-logo {
+                font-size: 56px;
+            }
+
+            .protected-title {
+                font-size: 24px;
+                letter-spacing: 3px;
+            }
+
+            .protected-subtitle {
+                font-size: 14px;
+            }
+
+            .protected-user-info {
+                padding: 20px 25px;
+            }
+
+            .protected-actions {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .protected-button {
+                width: 100%;
+                text-align: center;
+            }
+
+            .protected-content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Container -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="scanline"></div>
+    <div class="red-glow"></div>
+    <div class="mouse-gradient" id="mouseGradient"></div>
+
+    <!-- Protected Container -->
+    <div class="protected-container">
+        <div class="protected-logo">MODE</div>
+        <h1 class="protected-title">Área Protegida</h1>
+        <p class="protected-subtitle">
+            Bem-vindo(a) à área restrita da Mode. Aqui você terá acesso a conteúdos exclusivos.
+        </p>
+
+        <div class="protected-user-info" id="userInfoBox">
+            <!-- Informações serão inseridas via JavaScript -->
+        </div>
+
+        <div class="protected-actions">
+            <a href="index.html" class="protected-button">← Voltar ao Site</a>
+            <a href="admin.html" class="protected-button" id="adminLink" style="display: none;">
+                Painel Admin
+            </a>
+            <button class="protected-button danger" onclick="Auth.logout()">
+                Sair
+            </button>
+        </div>
+
+        <div class="protected-content">
+            <h3>Conteúdo Exclusivo</h3>
+            <p>
+                EM BREVE
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Protege a página
+        Auth.requireAuth();
+
+        // Atualiza informações do usuário
+        function updateUserInfo() {
+            const user = Auth.getCurrentUser();
+            const userInfoBox = document.getElementById('userInfoBox');
+            const adminLink = document.getElementById('adminLink');
+
+            const loginDate = new Date(user.loginTime);
+            const formattedDate = loginDate.toLocaleString('pt-BR');
+
+            userInfoBox.innerHTML = `
+                <div class="user-detail">
+                    <strong>Usuário:</strong> ${user.username}
+                </div>
+                <div class="user-detail">
+                    <strong>Tipo:</strong> ${user.isAdmin ? 'Administrador' : 'Usuário'}
+                </div>
+                <div class="user-detail">
+                    <strong>Login em:</strong> ${formattedDate}
+                </div>
+            `;
+
+            // Mostra link do admin se for admin
+            if (user.isAdmin) {
+                adminLink.style.display = 'inline-block';
+            }
+        }
+
+        // Inicializa
+        updateUserInfo();
+    </script>
+</body>
+</html>
