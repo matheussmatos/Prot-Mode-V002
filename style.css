@@ -14,15 +14,20 @@
     --color-red: rgba(80, 0, 0, 0.8);
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Cormorant Garamond', serif;
-    background: linear-gradient(180deg, #0a0000 0%, #000 50%, #0a0000 100%);
+    background: linear-gradient(135deg, #1a0a0f 0%, #0d0000 50%, #000000 100%);
     color: #fff;
     overflow-x: hidden;
+    position: relative;
 }
 
 /* ========================================
-   LOADING SCREEN
+   LOADING SCREEN - COM GIF
 ======================================== */
 
 .loading-screen {
@@ -44,28 +49,38 @@ body {
     pointer-events: none;
 }
 
-.loading-logo {
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 80px;
-    color: #fff;
-    animation: pulse 2s ease-in-out infinite;
-    letter-spacing: 2px;
+.loading-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: loadingPulse 2s ease-in-out infinite;
     will-change: transform, opacity;
 }
 
-@keyframes pulse {
+.loading-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.2);
+}
+
+@keyframes loadingPulse {
     0%, 100% { 
         opacity: 1; 
         transform: scale(1); 
     }
     50% { 
-        opacity: 0.5; 
+        opacity: 0.6; 
         transform: scale(0.95); 
     }
 }
 
 /* ========================================
-   PARTICLES EFFECT (POEIRA ANIMADA)
+   PARTICLES EFFECT (POEIRA ANIMADA - RÁPIDA)
 ======================================== */
 
 .particles {
@@ -94,10 +109,10 @@ body {
         transform: translateY(100vh) translateX(0);
         opacity: 0;
     }
-    10% {
+    5% {
         opacity: 1;
     }
-    90% {
+    95% {
         opacity: 1;
     }
     100% {
@@ -179,6 +194,26 @@ body {
 }
 
 /* ========================================
+   MOUSE GRADIENT - PARALLAX COM MOUSE
+======================================== */
+
+.mouse-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        600px at 50% 50%,
+        rgba(120, 0, 20, 0.15) 0%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+    will-change: background-position;
+}
+
+/* ========================================
    NAVIGATION
 ======================================== */
 
@@ -241,7 +276,7 @@ nav {
 }
 
 /* ========================================
-   HERO SECTION
+   HERO SECTION - ESPAÇAMENTO AMPLO SEM OVERFLOW
 ======================================== */
 
 .hero {
@@ -249,29 +284,37 @@ nav {
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 180px 60px;
-    margin-bottom: 250px;
+    padding: 220px 60px 120px 60px;
+    min-height: auto;
+    z-index: 10;
+    overflow: visible;
 }
 
 .hero-content {
     text-align: center;
     z-index: 10;
     max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    position: relative;
+    transform: none !important;
 }
 
 .hero h1 {
     font-size: clamp(60px, 10vw, 140px);
     font-weight: 300;
     letter-spacing: 10px;
-    margin-bottom: 30px;
-    line-height: 1.1;
+    line-height: 1.2;
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     position: relative;
     display: inline-block;
-    will-change: transform;
+    will-change: auto;
+    margin: 0;
 }
 
-/* GLITCH EFFECT MANTIDO */
+/* GLITCH EFFECT DESACELERADO */
 .hero h1::before,
 .hero h1::after {
     content: attr(data-text);
@@ -284,14 +327,14 @@ nav {
 }
 
 .hero h1::before {
-    animation: glitch-before 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    animation: glitch-before 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
     color: #ff0055;
     z-index: -1;
     text-shadow: -2px 0 #ff0055;
 }
 
 .hero h1::after {
-    animation: glitch-after 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite reverse;
+    animation: glitch-after 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite reverse;
     color: #00ffff;
     z-index: -2;
     text-shadow: 2px 0 #00ffff;
@@ -302,17 +345,21 @@ nav {
         clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
         transform: translate(0);
     }
-    20% {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 5%, 0% 5%);
+    15% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 8%, 0% 8%);
         transform: translate(-2px, 2px);
     }
-    40% {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 15%, 0% 15%);
+    30% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 20%, 0% 20%);
         transform: translate(2px, -2px);
     }
-    60% {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 30%, 0% 30%);
-        transform: translate(-2px, -2px);
+    50% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 40%, 0% 40%);
+        transform: translate(-1px, 1px);
+    }
+    70% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 0% 70%);
+        transform: translate(1px, -1px);
     }
     100% {
         clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
@@ -325,17 +372,21 @@ nav {
         clip-path: polygon(0% 100%, 0% 100%, 100% 100%, 100% 100%);
         transform: translate(0);
     }
-    20% {
-        clip-path: polygon(0% 95%, 0% 95%, 100% 100%, 100% 95%);
+    15% {
+        clip-path: polygon(0% 92%, 0% 92%, 100% 100%, 100% 92%);
         transform: translate(2px, -2px);
     }
-    40% {
-        clip-path: polygon(0% 85%, 0% 85%, 100% 100%, 100% 85%);
+    30% {
+        clip-path: polygon(0% 80%, 0% 80%, 100% 100%, 100% 80%);
         transform: translate(-2px, 2px);
     }
-    60% {
-        clip-path: polygon(0% 70%, 0% 70%, 100% 100%, 100% 70%);
-        transform: translate(2px, 2px);
+    50% {
+        clip-path: polygon(0% 60%, 0% 60%, 100% 100%, 100% 60%);
+        transform: translate(1px, -1px);
+    }
+    70% {
+        clip-path: polygon(0% 30%, 0% 30%, 100% 100%, 100% 30%);
+        transform: translate(-1px, 1px);
     }
     100% {
         clip-path: polygon(0% 0%, 0% 0%, 100% 0%, 100% 0%);
@@ -347,7 +398,7 @@ nav {
     font-size: 20px;
     color: rgba(255, 255, 255, 0.7);
     letter-spacing: 3px;
-    margin-bottom: 50px;
+    margin: 0;
     text-transform: uppercase;
 }
 
@@ -364,6 +415,7 @@ nav {
     overflow: hidden;
     transition: all 0.3s ease;
     will-change: transform;
+    margin-top: 15px;
 }
 
 .cta-button::before {
@@ -387,38 +439,47 @@ nav {
 }
 
 /* ========================================
-   SECTIONS
+   SECTIONS - ESPAÇAMENTO HARMONIOSO
 ======================================== */
 
 section {
     position: relative;
     z-index: 10;
-    padding: 150px 60px;
+    padding: 120px 60px;
 }
 
 .about {
     background: transparent;
-    margin-top: 100px;
+    padding-top: 150px;
+    padding-bottom: 140px;
+    position: relative;
+    z-index: 20;
 }
 
 .gallery {
     background: transparent;
-    margin-top: 100px;
+    padding-top: 140px;
+    padding-bottom: 140px;
+    position: relative;
+    z-index: 20;
 }
 
 .contact {
     background: transparent;
-    margin-top: 100px;
+    padding-top: 140px;
+    padding-bottom: 140px;
+    position: relative;
+    z-index: 20;
 }
 
 .section-title {
     font-size: clamp(40px, 6vw, 80px);
     font-weight: 300;
-    letter-spacing: 8px;
+    letter-spacing: 3px;
     text-align: center;
-    margin-bottom: 100px;
+    margin-bottom: 10px;
     text-transform: uppercase;
-    padding-bottom: 50px;
+    padding-bottom: 60px;
 }
 
 /* ========================================
@@ -435,15 +496,15 @@ section {
 }
 
 .about-text p {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 2;
     color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 30px;
+    margin-bottom: 45px;
 }
 
 .gif-container {
     width: 100%;
-    max-width: 600px;
+    max-width: 750px;
     aspect-ratio: 1;
     overflow: hidden;
     position: relative;
@@ -464,7 +525,7 @@ section {
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
+    gap: 10px;
     max-width: 1600px;
     margin: 0 auto;
 }
@@ -622,7 +683,7 @@ section {
 ======================================== */
 
 footer {
-    padding: 150px 60px;
+    padding: 120px 60px;
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
@@ -756,20 +817,31 @@ footer p {
     }
 
     .hero {
-        padding: 150px 40px;
-        margin-bottom: 200px;
+        padding: 180px 40px 220px 40px;
     }
 
     section {
-        padding: 120px 40px;
+        padding: 100px 40px;
+    }
+
+    .about {
+        padding-top: 130px;
+        padding-bottom: 120px;
+    }
+
+    .gallery {
+        padding-top: 120px;
+        padding-bottom: 120px;
+    }
+
+    .contact {
+        padding-top: 120px;
+        padding-bottom: 120px;
     }
 
     .section-title {
-        margin-bottom: 80px;
-    }
-
-    .about-grid {
-        gap: 60px;
+        margin-bottom: 70px;
+        padding-bottom: 35px;
     }
 }
 
@@ -798,20 +870,21 @@ footer p {
     }
 
     .hero {
-        padding: 100px 20px;
-        margin-bottom: 120px;
+        padding: 120px 20px 120px 20px;
+    }
+
+    .hero-content {
+        gap: 25px;
     }
 
     .hero h1 {
         font-size: clamp(40px, 8vw, 80px);
         letter-spacing: 6px;
-        margin-bottom: 20px;
     }
 
     .hero p {
         font-size: 16px;
         letter-spacing: 2px;
-        margin-bottom: 30px;
     }
 
     .cta-button {
@@ -821,8 +894,27 @@ footer p {
     }
 
     section {
-        padding: 80px 20px;
-        margin-top: 60px;
+        padding: 70px 20px;
+    }
+
+    .about {
+        padding-top: 100px;
+        padding-bottom: 90px;
+    }
+
+    .gallery {
+        padding-top: 90px;
+        padding-bottom: 90px;
+    }
+
+    .contact {
+        padding-top: 90px;
+        padding-bottom: 90px;
+    }
+
+    .section-title {
+        margin-bottom: 55px;
+        padding-bottom: 30px;
     }
 
     .about-grid {
@@ -854,13 +946,6 @@ footer p {
 
     .gallery-info p {
         font-size: 11px;
-    }
-
-    .section-title {
-        font-size: clamp(30px, 7vw, 50px);
-        letter-spacing: 4px;
-        margin-bottom: 60px;
-        padding-bottom: 30px;
     }
 
     .form-group input,
@@ -908,9 +993,9 @@ footer p {
         font-size: 50px;
     }
 
-    .loading-logo {
-        font-size: 50px;
-        letter-spacing: 1px;
+    .loading-container {
+        width: 150px;
+        height: 150px;
     }
 }
 
@@ -937,21 +1022,21 @@ footer p {
     }
 
     .hero {
-        padding: 80px 15px;
-        margin-bottom: 100px;
-        min-height: auto;
+        padding: 100px 15px 100px 15px;
+    }
+
+    .hero-content {
+        gap: 20px;
     }
 
     .hero h1 {
         font-size: clamp(32px, 7vw, 60px);
         letter-spacing: 4px;
-        margin-bottom: 15px;
     }
 
     .hero p {
         font-size: 14px;
         letter-spacing: 1px;
-        margin-bottom: 25px;
     }
 
     .cta-button {
@@ -962,7 +1047,26 @@ footer p {
 
     section {
         padding: 60px 15px;
-        margin-top: 50px;
+    }
+
+    .about {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .gallery {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .contact {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .section-title {
+        margin-bottom: 50px;
+        padding-bottom: 25px;
     }
 
     .about-grid {
@@ -982,13 +1086,6 @@ footer p {
 
     .gallery-item {
         aspect-ratio: 3/4;
-    }
-
-    .section-title {
-        font-size: clamp(24px, 6vw, 36px);
-        letter-spacing: 3px;
-        margin-bottom: 50px;
-        padding-bottom: 20px;
     }
 
     .contact-container {
@@ -1045,8 +1142,9 @@ footer p {
         font-size: 13px;
     }
 
-    .loading-logo {
-        font-size: 40px;
+    .loading-container {
+        width: 120px;
+        height: 120px;
     }
 }
 
@@ -1059,11 +1157,5 @@ footer p {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-    }
-}
-
-@supports (scroll-behavior: smooth) {
-    html {
-        scroll-behavior: smooth;
     }
 }
