@@ -1,10 +1,11 @@
 // ========================================
-// PARTICLES EFFECT - POEIRA SUBINDO
+// PARTICLES EFFECT - POEIRA SUBINDO (OTIMIZADO)
 // ========================================
 
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
-    const particleCount = 50;
+    const isMobile = window.innerWidth <= 768;
+    const particleCount = isMobile ? 20 : 50;
 
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
@@ -28,6 +29,19 @@ function createParticles() {
 
 window.addEventListener('DOMContentLoaded', createParticles);
 
+// Recria partículas ao redimensionar
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        const particlesContainer = document.getElementById('particles');
+        if (particlesContainer) {
+            particlesContainer.innerHTML = '';
+            createParticles();
+        }
+    }, 250);
+});
+
 // ========================================
 // LOADING SCREEN
 // ========================================
@@ -48,18 +62,21 @@ window.addEventListener('load', () => {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const offsetTop = target.offsetTop - 80;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
             });
         }
     });
 });
 
 // ========================================
-// SCROLL ANIMATIONS
+// SCROLL ANIMATIONS (OTIMIZADO)
 // ========================================
 
 const observerOptions = {
@@ -71,6 +88,7 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('aos-animate');
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
@@ -112,13 +130,14 @@ if (form && modal && closeModal) {
 }
 
 // ========================================
-// PARALLAX EFFECT
+// PARALLAX EFFECT (OTIMIZADO PARA MOBILE)
 // ========================================
 
 let ticking = false;
+const isMobileDevice = window.innerWidth <= 768;
 
 window.addEventListener('scroll', () => {
-    if (!ticking) {
+    if (!ticking && !isMobileDevice) {
         window.requestAnimationFrame(() => {
             const scrolled = window.pageYOffset;
             const heroContent = document.querySelector('.hero-content');
@@ -146,35 +165,59 @@ window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
 
     if (currentScroll > 100) {
-        nav.style.padding = '20px 60px';
+        nav.style.padding = window.innerWidth <= 480 ? '15px 15px' : '20px 60px';
         nav.style.background = 'rgba(0, 0, 0, 0.95)';
     } else {
-        nav.style.padding = '30px 60px';
+        nav.style.padding = window.innerWidth <= 480 ? '15px 15px' : '30px 60px';
         nav.style.background = 'linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%)';
     }
 
     lastScroll = currentScroll;
-});
+}, { passive: true });
 
 // ========================================
-// GALLERY HOVER EFFECTS
+// GALLERY HOVER EFFECTS (DESKTOP ONLY)
 // ========================================
 
-document.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('mouseenter', function() {
-        const img = this.querySelector('img');
-        if (img) {
-            img.style.filter = 'contrast(1.3) brightness(0.9)';
-        }
-    });
+if (!isMobileDevice) {
+    document.querySelectorAll('.gallery-item').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            const img = this.querySelector('img');
+            if (img) {
+                img.style.filter = 'contrast(1.3) brightness(0.9)';
+            }
+        });
 
-    item.addEventListener('mouseleave', function() {
-        const img = this.querySelector('img');
-        if (img) {
-            img.style.filter = 'contrast(1.2)';
-        }
+        item.addEventListener('mouseleave', function() {
+            const img = this.querySelector('img');
+            if (img) {
+                img.style.filter = 'contrast(1.2)';
+            }
+        });
     });
-});
+}
+
+// ========================================
+// TOUCH SUPPORT PARA GALLERY (MOBILE)
+// ========================================
+
+if (isMobileDevice) {
+    document.querySelectorAll('.gallery-item').forEach(item => {
+        item.addEventListener('touchstart', function() {
+            const img = this.querySelector('img');
+            if (img) {
+                img.style.filter = 'contrast(1.2) brightness(0.95)';
+            }
+        });
+
+        item.addEventListener('touchend', function() {
+            const img = this.querySelector('img');
+            if (img) {
+                img.style.filter = 'contrast(1.2)';
+            }
+        });
+    });
+}
 
 // ========================================
 // CONSOLE MESSAGE
