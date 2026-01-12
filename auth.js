@@ -31,7 +31,7 @@ class AuthSystem {
 
     // Hash simples de senha (para produção, use bcrypt ou similar)
     hashPassword(password) {
-        // Implementação básica - em produção use uma biblioteca adequada
+        // Implementação básica
         let hash = 0;
         for (let i = 0; i < password.length; i++) {
             const char = password.charCodeAt(i);

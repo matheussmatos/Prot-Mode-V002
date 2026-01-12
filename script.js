@@ -1,5 +1,5 @@
 // ========================================
-// PARTICLES EFFECT - POEIRA RÁPIDA (OTIMIZADA)
+// PARTICULAS - POEIRA RÁPIDA (OTIMIZADA)
 // ========================================
 
 function createParticles() {
@@ -56,7 +56,7 @@ window.addEventListener('load', () => {
 });
 
 // ========================================
-// MOUSE PARALLAX GRADIENT
+// MOUSE PARALLAX GRADIENTE
 // ========================================
 
 const mouseGradient = document.getElementById('mouseGradient');
@@ -98,7 +98,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ========================================
-// SCROLL ANIMATIONS (OTIMIZADO)
+// SCROLL (OTIMIZADO)
 // ========================================
 
 const observerOptions = {
@@ -120,7 +120,7 @@ document.querySelectorAll('[data-aos]').forEach(el => {
 });
 
 // ========================================
-// CONTACT FORM MODAL
+// CONTATO FORM MODAL
 // ========================================
 
 const modal = document.getElementById('successModal');
@@ -152,7 +152,7 @@ if (form && modal && closeModal) {
 }
 
 // ========================================
-// NAVBAR SCROLL EFFECT
+// NAVBAR EFFECT
 // ========================================
 
 const nav = document.querySelector('nav');
@@ -173,7 +173,7 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ========================================
-// GALLERY HOVER EFFECTS (DESKTOP ONLY)
+// GALERIA HOVER EFFECTS (DESKTOP)
 // ========================================
 
 const isMobileDevice = window.innerWidth <= 768;
@@ -197,7 +197,7 @@ if (!isMobileDevice) {
 }
 
 // ========================================
-// TOUCH SUPPORT PARA GALLERY (MOBILE)
+// TOUCH SUPPORT PARA GALERIA (MOBILE)
 // ========================================
 
 if (isMobileDevice) {
@@ -227,7 +227,7 @@ console.log('%c Todos os modos de arte ', 'background: #500000; color: #fff; fon
 
 // LIGHTBOX GALERIA
 document.querySelectorAll('.gallery-item img').forEach(img => {
-    img.addEventListener('click', function() { // Corrigido: removido o ")" extra
+    img.addEventListener('click', function() {
         const lightbox = document.createElement('div');
         
         // Estilização básica para o lightbox aparecer
