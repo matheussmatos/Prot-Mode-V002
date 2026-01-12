@@ -1,19 +1,19 @@
 // ========================================
-// PARTICLES EFFECT - POEIRA SUBINDO (OTIMIZADO)
+// PARTICLES EFFECT - POEIRA RÁPIDA (OTIMIZADA)
 // ========================================
 
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
     const isMobile = window.innerWidth <= 768;
-    const particleCount = isMobile ? 20 : 50;
+    const particleCount = isMobile ? 40 : 60;
 
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.classList.add('particle');
         
         const randomLeft = Math.random() * window.innerWidth;
-        const randomDuration = Math.random() * 20 + 15;
-        const randomDelay = Math.random() * 5;
+        const randomDuration = Math.random() * 12 + 8;
+        const randomDelay = Math.random() * 2;
         const randomSize = Math.random() * 3 + 1;
         
         particle.style.left = randomLeft + 'px';
@@ -43,7 +43,7 @@ window.addEventListener('resize', () => {
 });
 
 // ========================================
-// LOADING SCREEN
+// LOADING SCREEN - FADE OUT RÁPIDO COM GIF
 // ========================================
 
 window.addEventListener('load', () => {
@@ -54,6 +54,28 @@ window.addEventListener('load', () => {
         }
     }, 2000);
 });
+
+// ========================================
+// MOUSE PARALLAX GRADIENT
+// ========================================
+
+const mouseGradient = document.getElementById('mouseGradient');
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    const gradientX = (mouseX / window.innerWidth) * 100;
+    const gradientY = (mouseY / window.innerHeight) * 100;
+    
+    mouseGradient.style.backgroundImage = `radial-gradient(
+        600px at ${gradientX}% ${gradientY}%,
+        rgba(120, 0, 20, 0.15) 0%,
+        transparent 100%
+    )`;
+}, { passive: true });
 
 // ========================================
 // SMOOTH SCROLL
@@ -130,31 +152,6 @@ if (form && modal && closeModal) {
 }
 
 // ========================================
-// PARALLAX EFFECT (OTIMIZADO PARA MOBILE)
-// ========================================
-
-let ticking = false;
-const isMobileDevice = window.innerWidth <= 768;
-
-window.addEventListener('scroll', () => {
-    if (!ticking && !isMobileDevice) {
-        window.requestAnimationFrame(() => {
-            const scrolled = window.pageYOffset;
-            const heroContent = document.querySelector('.hero-content');
-
-            if (heroContent && scrolled < 1000) {
-                const speed = 0.5;
-                heroContent.style.transform = `translateY(${scrolled * speed}px)`;
-            }
-
-            ticking = false;
-        });
-
-        ticking = true;
-    }
-});
-
-// ========================================
 // NAVBAR SCROLL EFFECT
 // ========================================
 
@@ -178,6 +175,8 @@ window.addEventListener('scroll', () => {
 // ========================================
 // GALLERY HOVER EFFECTS (DESKTOP ONLY)
 // ========================================
+
+const isMobileDevice = window.innerWidth <= 768;
 
 if (!isMobileDevice) {
     document.querySelectorAll('.gallery-item').forEach(item => {
