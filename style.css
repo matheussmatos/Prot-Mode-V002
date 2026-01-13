@@ -174,7 +174,7 @@ body {
     left: 50%;
     width: 800px;
     height: 800px;
-    background: radial-gradient(circle, rgba(80, 0, 0, 0.3) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(68, 1, 1, 0.233) 0%, transparent 70%);
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 0;
@@ -253,7 +253,7 @@ nav {
 .nav-links a {
     color: #fff;
     text-decoration: none;
-    font-size: 8px;
+    font-size: 12px;
     letter-spacing: 3px;
     text-transform: uppercase;
     position: relative;
@@ -559,7 +559,7 @@ section {
 }
 
 .gallery-item:hover {
-    transform: scale(1.02);
+    transform: scale(1.00);
     border-color: rgba(255, 255, 255, 0.3);
 }
 

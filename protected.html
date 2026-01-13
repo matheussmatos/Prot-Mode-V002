@@ -203,9 +203,32 @@
             Bem-vindo(a) à área restrita da Mode. Aqui você terá acesso a conteúdos exclusivos.
         </p>
 
-        <div class="protected-user-info" id="userInfoBox">
-            <!-- Informações serão inseridas via JS -->
+        <div class="container-jogo">
+            <h2></h2>
+            <iframe 
+                src="https://games.crazygames.com/pt_BR/8-ball-billiards-classic/index.html?v=1.348" 
+                width="800px" 
+                height="600px" 
+                frameborder="0" 
+                allowfullscreen="true"
+                scrolling="no">
+            </iframe>
+            <br>
+            <br>
+            <br>
         </div>
+
+        <iframe 
+        data-testid="embed-iframe" 
+        style="border-radius: 12px;" 
+        src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM3M" 
+        width="70%" 
+        height="152" 
+        frameBorder="0" 
+        allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy">
+        </iframe>
 
         <div class="protected-actions">
             <a href="index.html" class="protected-button">← Voltar ao Site</a>
@@ -229,7 +252,7 @@
     <script src="auth.js"></script>
     <script>
         // Protege a página
-        Auth.requireAuth();
+        Auth.requireAuth(); 
 
         // Atualiza informações do usuário
         function updateUserInfo() {
