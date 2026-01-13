@@ -19,7 +19,7 @@ html {
 }
 
 body {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Anton', sans-serif;
     background: linear-gradient(135deg, #1a0a0f 0%, #0d0000 50%, #000000 100%);
     color: #fff;
     overflow-x: hidden;
@@ -621,7 +621,7 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #fff;
     font-size: 16px;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Anton', serif;
     transition: all 0.3s ease;
 }
 
@@ -653,7 +653,7 @@ section {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Anton', serif;
     font-weight: 600;
     will-change: transform;
 }
