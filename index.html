@@ -10,62 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet">
-    <style>
-        /* Botão de login no menu */
-        .login-button {
-            width: 32px;
-            height: 32px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        .login-button:hover {
-            border-color: #fff;
-            color: #fff;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-container {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .login-button {
-                width: 28px;
-                height: 28px;
-                font-size: 14px;
-            }
-
-            .nav-right {
-                gap: 15px;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Loading -->
@@ -74,6 +18,9 @@
             <img src="img/home-mode.gif" alt="Mode Loading" class="loading-gif">
         </div>
     </div>
+
+    <!-- Overlay para fechar menu mobile -->
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <!-- Particulas Container -->
     <div class="particles" id="particles"></div>
@@ -89,11 +36,18 @@
         <div class="nav-container">
             <div class="logo">MODE</div>
             <div class="nav-right">
-                <div class="nav-links">
+                <!-- Menu Desktop -->
+                <div class="nav-links" id="navLinks">
                     <a href="#home">Início</a>
                     <a href="#about">Sobre</a>
                     <a href="#gallery">Galeria</a>
                     <a href="#contact">Contato</a>
+                </div>
+                <!-- Menu Hambúrguer -->
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
                 <a href="login.html" class="login-button" title="Área Restrita">?</a>
             </div>
@@ -163,10 +117,13 @@
                 <div class="gallery-info">
                     <p>MODE SKETCH 2021</p>
                 </div>
+            </div>
             <div class="gallery-item" data-aos>
                 <img src="img/naruto.jpg" alt="Naruto">
                 <div class="gallery-info">
                     <p>MODE SKETCH 2021</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -211,8 +168,8 @@
             <div class="modal-icon">✓</div>
             <h2>Mensagem Enviada</h2>
             <p>Obrigado por entrar em contato com a Mode.</p>
-                <bl>
-                    Um dia a gente responde...
+            <br>
+            Um dia a gente responde...
         </div>
     </div>
 
